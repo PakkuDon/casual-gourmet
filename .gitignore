@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Log files
+*.log
+
+# OSX Temp files
+.DS_Store
