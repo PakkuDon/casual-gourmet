@@ -1,4 +1,10 @@
 require('normalize.css/normalize.css');
 require('./stylesheets/app.scss');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
 
-console.log(`template strings are ${'awesome'}`);
+ReactDOM.render(
+  <App />,
+  document.querySelector('#app')
+);
