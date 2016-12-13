@@ -6,10 +6,11 @@ var app = express();
 app.set('port', process.env.PORT || 8080);
 
 // Add middlewares
+app.use(express.static(__dirname + '/dist'));
 
 // Add routes
 app.get('/', (req, res) => {
-  res.send('Hello world');
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.listen(app.get('port'), () => {
