@@ -21,7 +21,7 @@ Routes
     /:id              - get user with id and associated stuff
     POST /            - create user account
     PUT /:id          - edit user
-  /session
+  /auth
     POST /            - login
     DELETE /          - logout
   /recipes
