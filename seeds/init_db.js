@@ -8,6 +8,15 @@ var ingredients = [
   'pasta',
   'pineapple'
 ];
+var tags = [
+  'breakfast',
+  'brunch',
+  'lunch',
+  'tea',
+  'dinner',
+  'dessert',
+  'snack'
+];
 
 exports.seed = function(knex, Promise) {
   // Delete existing entries
@@ -52,6 +61,14 @@ exports.seed = function(knex, Promise) {
     return Promise.all(ingredients.map(ingredient => {
       return knex('ingredients').insert({
         name: ingredient
+      });
+    }));
+  })
+  // Add tags
+  .then(() => {
+    return Promise.all(tags.map(tag => {
+      return knex('tags').insert({
+        name: tag
       });
     }));
   });
