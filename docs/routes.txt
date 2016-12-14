@@ -1,0 +1,44 @@
+Routes
+
+/                     - Landing page
+  /account
+    /register         - create new account
+    /login            - sign in
+    /logout           - sign out - redirect to /
+  /users
+    /:name            - profile
+    /:name/bookmarks  - user's bookmarks
+    /:name/reviews    - user's reviews
+  /tags               - view all tags / filter by ?
+  /recipes
+    /                 - recipe search results
+      ?tags=[]&ingredients=[]
+    /new              - create new recipe
+    /:id              - show recipe with id
+    /:id/edit         - edit recipe
+/api
+  /users
+    /:id              - get user with id and associated stuff
+    POST /            - create user account
+    PUT /:id          - edit user
+  /session
+    POST /            - login
+    DELETE /          - logout
+  /recipes
+    /?q               - recipes, filtered
+      - tags
+      - ingredients
+      - name
+      - offset + limit
+    POST /            - add recipe
+    /:id              - get single recipe and associated stuff
+    PUT /:id          - edit single recipe
+    DELETE /:id       - delete single recipe
+  /bookmarks
+    POST /            - bookmark recipe with given id
+  /reviews
+    POST /            - review recipe with given id
+  /tags
+    /?q               - tags, filtered by substring
+  /ingredients
+    /?q               - ingredients, filtered by substring
