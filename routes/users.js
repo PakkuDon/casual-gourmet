@@ -2,7 +2,6 @@ var router = require('express').Router();
 var db = require('../db');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-const secret = 'wdi9-bar-code';
 
 // GET /api/users/:id
 // Return details for selected user
@@ -58,7 +57,7 @@ router.post('/', (req, res) => {
         db('users').insert(user)
         // On success, create json token and log user in
         .then(id => {
-          var token = jwt.sign(user, secret, {
+          var token = jwt.sign(user, req.app.get('secret'), {
             expiresIn: '24h'
           });
 

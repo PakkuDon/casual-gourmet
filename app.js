@@ -15,6 +15,7 @@ var userRoutes = require('./routes/users');
 
 // Configure app
 app.set('port', process.env.PORT || 8080);
+app.set('secret', 'wdi9-bar-code');
 
 // Add middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
