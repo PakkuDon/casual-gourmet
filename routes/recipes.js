@@ -5,13 +5,35 @@ var db = require('../db');
 // Return recipes filtered by tags, ingredients, name
 // and within offset and limit
 router.get('/', (req, res) => {
-  res.sendStatus(501);
+  db('recipes').select()
+  .then(recipes => {
+    res.json({
+      success: true,
+      recipes: recipes
+    });
+  })
+  .catch(err => {
+    console.error(err);
+    res.sendStatus(500);
+  })
 });
 
 // GET /api/recipes/:id
 // Retrieve single recipe
-router.get('/', (req, res) => {
-  res.sendStatus(501);
+router.get('/:id', (req, res) => {
+  db('recipes')
+  .where({ id: req.params.id })
+  .then(results => {
+    if (results.length === 0) {
+      res.sendStatus(404);
+    }
+    else {
+      res.json({
+        success: true,
+        recipe: results[0]
+      });
+    }
+  })
 });
 
 // POST /api/recipes
