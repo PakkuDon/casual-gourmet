@@ -54,22 +54,25 @@ router.post('/', (req, res) => {
           last_name: req.body.last_name,
           password: bcrypt.hashSync(req.body.password, salt)
         };
-        db('users').insert(user)
-        // On success, create json token and log user in
-        .then(id => {
-          var token = jwt.sign(user, req.app.get('secret'), {
-            expiresIn: '24h'
-          });
+        db('users')
+          .returning('id')
+          .insert(user)
+          // On success, create json token and log user in
+          .then(result => {
+            var id = result[0];
+            var token = jwt.sign({ user_id: id }, req.app.get('secret'), {
+              expiresIn: '24h'
+            });
 
-          res.json({
-            success: true,
-            token: token
+            res.json({
+              success: true,
+              token: token
+            });
+          })
+          .catch(err => {
+            console.error(err);
+            res.sendStatus(500);
           });
-        })
-        .catch(err => {
-          console.error(err);
-          res.sendStatus(500);
-        });
       }
     })
     .catch(err => {
