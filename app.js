@@ -1,4 +1,6 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 var db = require('./db');
 var app = express();
 
@@ -15,6 +17,8 @@ var userRoutes = require('./routes/users');
 app.set('port', process.env.PORT || 8080);
 
 // Add middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/dist'));
 
 // Add routes
