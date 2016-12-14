@@ -7,7 +7,26 @@ const secret = 'wdi9-bar-code';
 // GET /api/users/:id
 // Return details for selected user
 router.get('/:id', (req, res) => {
-  res.sendStatus(501);
+  db('users')
+  .select('id', 'username', 'first_name', 'last_name', 'email')
+  .where({
+    id: req.params.id
+  })
+  .then(results => {
+    if (results.length === 0) {
+      res.sendStatus(404);
+    }
+    else {
+      res.json({
+        success: true,
+        user: results[0]
+      });
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    res.sendStatus(500);
+  })
 });
 
 // POST /api/users/
