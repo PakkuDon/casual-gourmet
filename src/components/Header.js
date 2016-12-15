@@ -15,6 +15,7 @@ export default class Header extends React.Component {
           {this.props.isAuthenticated ?
             (<ul>
               <li>Welcome</li>
+              <li><Link to='/recipes/new'>Add Recipe</Link></li>
               <li><Link to='/account/logout'>Log out</Link></li>
             </ul>)
           :
