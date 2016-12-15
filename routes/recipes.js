@@ -54,7 +54,8 @@ router.post('/', auth.isAuthenticated, (req, res) => {
       description: req.body.description,
       instructions: req.body.instructions,
       date_posted: new Date(),
-      author_id: req.token.user_id
+      author_id: req.token.user_id,
+      image_url: req.body.image_url
     };
 
     // Add recipe, then used ingredients
