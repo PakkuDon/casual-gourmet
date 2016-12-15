@@ -7,6 +7,11 @@ export default class Header extends React.Component {
       <header>
         <nav>
           <Link to='/'><h1 className='brand'>Casual Gourmet</h1></Link>
+          <ul>
+            <li>
+              <Link to='/recipes'>Recipes</Link>
+            </li>
+          </ul>
           {this.props.isAuthenticated ?
             (<ul>
               <li>Welcome</li>
