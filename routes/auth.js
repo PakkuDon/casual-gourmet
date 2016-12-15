@@ -11,7 +11,10 @@ router.post('/', (req, res) => {
   })
   .then(results => {
     if (results.length === 0) {
-      res.sendStatus(404);
+      res.status(404).json({
+        success: false,
+        message: 'Email or password invalid'
+      });
     }
     else {
       var user = results[0];
@@ -20,13 +23,17 @@ router.post('/', (req, res) => {
           expiresIn: '24h'
         });
 
-        res.json({
+        res.status(200).json({
           success: true,
+          message: 'Login successful',
           token: token
         });
       }
       else {
-        res.sendStatus(401);
+        res.status(401).json({
+          success: false,
+          message: 'Email or password invalid'
+        });
       }
     }
   })

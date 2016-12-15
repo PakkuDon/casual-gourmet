@@ -6,14 +6,17 @@ var db = require('../db');
 router.get('/', (req, res) => {
   db('tags').where('name', 'like', `%${req.query.tag || ''}%`)
     .then(tags => {
-      res.json({
+      res.status(200).json({
         success: true,
         tags: tags
       });
     })
     .catch(err => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to retrieve tags'
+      });
     });
 });
 

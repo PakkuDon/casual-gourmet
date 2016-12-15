@@ -16,7 +16,10 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to retrieve recipes'
+      });
     })
 });
 
@@ -27,7 +30,10 @@ router.get('/:id', (req, res) => {
     .where({ id: req.params.id })
     .then(results => {
       if (results.length === 0) {
-        res.sendStatus(404);
+        res.status(404).json({
+          success: false,
+          message: 'Recipe not found'
+        });
       }
       else {
         res.json({
@@ -80,12 +86,18 @@ router.post('/', auth.isAuthenticated, (req, res) => {
           })
           .catch(err => {
             console.error(err);
-            res.sendStatus(500);
+            res.status(500).json({
+              success: false,
+              message: 'Failed to create recipe'
+            });
           });
       });
   }
   else {
-    res.sendStatus(400);
+    res.status(400).json({
+      success: false,
+      message: 'Recipe data not supplied'
+    })
   }
 });
 

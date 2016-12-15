@@ -7,25 +7,31 @@ var jwt = require('jsonwebtoken');
 // Return details for selected user
 router.get('/:id', (req, res) => {
   db('users')
-  .select('id', 'username', 'first_name', 'last_name', 'email')
-  .where({
-    id: req.params.id
-  })
-  .then(results => {
-    if (results.length === 0) {
-      res.sendStatus(404);
-    }
-    else {
-      res.json({
-        success: true,
-        user: results[0]
+    .select('id', 'username', 'first_name', 'last_name', 'email')
+    .where({
+      id: req.params.id
+    })
+    .then(results => {
+      if (results.length === 0) {
+        res.status(404).json({
+          success: false,
+          message: 'User not found'
+        });
+      }
+      else {
+        res.status(200).json({
+          success: true,
+          user: results[0]
+        });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        success: false,
+        message: 'Could not retrieve user details'
       });
-    }
-  })
-  .catch(err => {
-    console.error(err);
-    res.sendStatus(500);
-  })
+    });
 });
 
 // POST /api/users/
@@ -37,11 +43,9 @@ router.post('/', (req, res) => {
     db('users').where({ email: req.body.email })
     .then(results => {
       if (results.length > 0) {
-        res.json({
+        res.status(400).json({
           success: false,
-          errors: [
-            'Email already taken'
-          ]
+          message: 'Email used by other user'
         });
       }
       else {
@@ -64,24 +68,33 @@ router.post('/', (req, res) => {
               expiresIn: '24h'
             });
 
-            res.json({
+            res.status(200).json({
               success: true,
               token: token
             });
           })
           .catch(err => {
             console.error(err);
-            res.sendStatus(500);
+            res.status(500).json({
+              success: false,
+              message: 'Authentication failed'
+            });
           });
       }
     })
     .catch(err => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).json({
+        success: false,
+        message: 'Authentication failed'
+      });
     });
   }
   else {
-    res.sendStatus(400);
+    res.status(400).json({
+      success: false,
+      message: 'Invalid user'
+    });
   }
 });
 
