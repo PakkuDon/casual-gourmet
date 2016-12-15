@@ -19,7 +19,7 @@ export default class RegistrationContainer extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      // TODO: Save token
+      this.props.authenticate(json.token);
       this.props.router.push('/');
     })
     // TODO: Show error

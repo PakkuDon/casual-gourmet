@@ -18,8 +18,7 @@ export default class LoginContainer extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      // TODO: Save token
-      console.log(json);
+      this.props.authenticate(json.token);
       this.props.router.push('/');
     })
     .catch(err => {
