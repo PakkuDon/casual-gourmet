@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var db = require('../db');
+var auth = require('../middleware/auth');
 
 // GET /api/recipes
 // Return recipes filtered by tags, ingredients, name
@@ -39,7 +40,7 @@ router.get('/:id', (req, res) => {
 
 // POST /api/recipes
 // Create new recipe
-router.post('/', (req, res) => {
+router.post('/', auth.isAuthenticated, (req, res) => {
   if (req.body) {
     // TODO: Set author_id
     var recipe = {
@@ -47,7 +48,7 @@ router.post('/', (req, res) => {
       description: req.body.description,
       instructions: req.body.instructions,
       date_posted: new Date(),
-      author_id: 1
+      author_id: req.token.user_id
     };
 
     // Add recipe, then used ingredients
@@ -56,6 +57,9 @@ router.post('/', (req, res) => {
       .insert(recipe)
       .then(recipeId => {
         recipeId = recipeId[0];
+        if (!Array.isArray(req.body.ingredients)) {
+          req.body.ingredients = Array.from(req.body.ingredients || []);
+        }
         var ingredients = req.body.ingredients.map(ingredient => {
           // TODO: Remove hard-coded values
           return {
