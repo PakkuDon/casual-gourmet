@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 export default class Recipe extends React.Component {
   render() {
@@ -7,7 +8,7 @@ export default class Recipe extends React.Component {
       <div className='recipe-card'>
         <h2>{recipe.name}</h2>
         <div>
-          Posted on {recipe.date_posted} by {recipe.author_id}
+          Posted on {moment(recipe.date_posted).format('MMMM Do YYYY')}
         </div>
         <p>{recipe.description}</p>
         <h3>Ingredients</h3>
