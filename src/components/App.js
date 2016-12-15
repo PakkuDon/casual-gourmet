@@ -6,7 +6,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      token: ''
     };
 
     this.authenticate = this.authenticate.bind(this);
@@ -23,14 +24,16 @@ export default class App extends React.Component {
   // Set user token and authentication flag
   authenticate(token) {
     this.setState({
-      isAuthenticated: true
+      isAuthenticated: true,
+      token: token
     });
     localStorage.setItem('token', token);
   }
 
   logout() {
     this.setState({
-      isAuthenticated: false
+      isAuthenticated: false,
+      token: ''
     });
     localStorage.removeItem('token');
   }
