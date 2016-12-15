@@ -3,6 +3,8 @@
 Recipe sharing app. Final project for Web Development Immersive.
 Screenshot pending.
 
+[Live demo](http://casual-gourmet.herokuapp.com/#/)
+
 ## Approach taken
 - Read about tech such as JSON Web Tokens and Redux, the latter which went unused
 - Wrote user stories
