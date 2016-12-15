@@ -5,8 +5,8 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
-        <h1>Recipe Box</h1>
         <nav>
+          <Link to='/'><h1 className='brand'>Casual Gourmet</h1></Link>
           {this.props.isAuthenticated ?
             (<ul>
               <li>Welcome</li>

@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id='app'>
         <Header isAuthenticated={this.state.isAuthenticated} />
         <main>
           {this.props.children && React.cloneElement(this.props.children, {
