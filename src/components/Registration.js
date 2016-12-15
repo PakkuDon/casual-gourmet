@@ -38,47 +38,45 @@ export default class Registration extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <label htmlFor='username'>Username</label>
-            <input id='username' ref='username'
-              onChange={this.onChange}
-              type='text' />
-          </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input id='email' ref='email'
-              onChange={this.onChange}
-              type='email' />
-          </div>
-          <div>
-            <label htmlFor='first_name'>First name</label>
-            <input id='first_name' ref='first_name'
-              onChange={this.onChange}
-              type='text' />
-          </div>
-          <div>
-            <label htmlFor='last_name'>Last name</label>
-            <input id='last_name' ref='last_name'
-              onChange={this.onChange}
-              type='text' />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input id='password' ref='password'
-              onChange={this.onChange}
-              type='password' />
-          </div>
-          <div>
-            <label htmlFor='confirm_password'>Confirm password</label>
-            <input id='confirm_password' ref='confirm_password'
-              onChange={this.onChange}
-              type='password' />
-          </div>
-          <button>Register</button>
-        </form>
-      </div>
+      <form onSubmit={this.onSubmit}>
+        <div>
+          <label htmlFor='username'>Username</label>
+          <input id='username' ref='username'
+            onChange={this.onChange}
+            type='text' />
+        </div>
+        <div>
+          <label htmlFor='email'>Email</label>
+          <input id='email' ref='email'
+            onChange={this.onChange}
+            type='email' />
+        </div>
+        <div>
+          <label htmlFor='first_name'>First name</label>
+          <input id='first_name' ref='first_name'
+            onChange={this.onChange}
+            type='text' />
+        </div>
+        <div>
+          <label htmlFor='last_name'>Last name</label>
+          <input id='last_name' ref='last_name'
+            onChange={this.onChange}
+            type='text' />
+        </div>
+        <div>
+          <label htmlFor='password'>Password</label>
+          <input id='password' ref='password'
+            onChange={this.onChange}
+            type='password' />
+        </div>
+        <div>
+          <label htmlFor='confirm_password'>Confirm password</label>
+          <input id='confirm_password' ref='confirm_password'
+            onChange={this.onChange}
+            type='password' />
+        </div>
+        <button>Register</button>
+      </form>
     );
   }
 }
