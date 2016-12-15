@@ -46,7 +46,8 @@ export default class App extends React.Component {
           {this.props.children && React.cloneElement(this.props.children, {
             isAuthenticated: this.state.isAuthenticated,
             authenticate: this.authenticate,
-            logout: this.logout
+            logout: this.logout,
+            token: this.state.token
           })}
         </main>
         <Footer />
