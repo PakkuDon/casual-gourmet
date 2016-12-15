@@ -11,7 +11,7 @@ export default class RecipeListContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/recipes')
+    fetch(`/api/recipes/?name=${this.props.location.query.name || ''}`)
       .then(res => res.json())
       .then(json => this.setState({ recipes: json.recipes }));
   }

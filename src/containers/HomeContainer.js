@@ -9,7 +9,7 @@ export default class HomeContainer extends React.Component {
   }
 
   onSubmit(query) {
-    this.props.router.push('/recipes');
+    this.props.router.push({ pathname: '/recipes', search: `?name=${query}` });
   }
 
   render() {

@@ -8,6 +8,7 @@ var auth = require('../middleware/auth');
 router.get('/', (req, res) => {
   db('recipes')
     .select()
+    .where('name', 'like', `%${req.query.name}%`)
     .then(recipes => {
       res.json({
         success: true,
