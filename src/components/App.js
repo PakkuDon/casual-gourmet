@@ -13,6 +13,13 @@ export default class App extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
+  componentDidMount() {
+    var token = localStorage.getItem('token');
+    if (token) {
+      this.authenticate(token);
+    }
+  }
+
   // Set user token and authentication flag
   authenticate(token) {
     this.setState({
@@ -31,7 +38,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header isAuthenticated={this.state.isAuthenticated} />
         <main>
           {this.props.children && React.cloneElement(this.props.children, {
             isAuthenticated: this.state.isAuthenticated,
