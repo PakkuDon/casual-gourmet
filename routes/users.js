@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 // Create new user
 router.post('/', (req, res) => {
   // Check if user exists
-  if (req.body.email) {
+  if (req.body.email && req.body.username && req.body.password) {
     // If user exists, send error
     db('users').where({ email: req.body.email })
     .then(results => {

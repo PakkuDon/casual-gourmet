@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class Header extends React.Component {
   render() {
@@ -7,8 +8,8 @@ export default class Header extends React.Component {
         <h1>Recipe Box</h1>
         <nav>
           <ul>
-            <li>Sign in</li>
-            <li>Sign up</li>
+            <li><Link to='/account/login'>Sign in</Link></li>
+            <li><Link to='/account/register'>Sign up</Link></li>
           </ul>
         </nav>
       </header>
