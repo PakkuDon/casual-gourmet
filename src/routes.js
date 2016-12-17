@@ -8,6 +8,7 @@ import RecipeList from './containers/RecipeListContainer';
 import Registration from './containers/RegistrationContainer';
 import Login from './containers/LoginContainer';
 import Logout from './containers/LogoutContainer';
+import Profile from './containers/ProfileContainer';
 
 export default (
   <Route path='/' component={App}>
@@ -18,5 +19,6 @@ export default (
     <Route path='/recipes' component={RecipeList} />
     <Route path='/recipes/new' component={AddRecipe} />
     <Route path='/recipes/:id' component={Recipe} />
+    <Route path='/users/:id' component={Profile} />
   </Route>
 );
