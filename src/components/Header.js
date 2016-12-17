@@ -12,9 +12,9 @@ export default class Header extends React.Component {
               <Link to='/recipes'>Recipes</Link>
             </li>
           </ul>
-          {this.props.isAuthenticated() ?
+          {this.props.isAuthenticated() && this.props.user ?
             (<ul>
-              <li>Welcome</li>
+              <li>Welcome <Link to={`/users/${this.props.user.id}`}>{this.props.user.username}</Link></li>
               <li><Link to='/recipes/new'>Add Recipe</Link></li>
               <li><Link to='/account/logout'>Log out</Link></li>
             </ul>)

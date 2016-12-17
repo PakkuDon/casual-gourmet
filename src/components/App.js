@@ -1,4 +1,6 @@
 import React from 'react';
+import fetch from 'isomorphic-fetch';
+import jwtDecode from 'jwt-decode';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -6,7 +8,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: ''
+      token: '',
+      user: null
     };
 
     this.isAuthenticated = this.isAuthenticated.bind(this);
@@ -25,17 +28,25 @@ export default class App extends React.Component {
     return !!this.state.token;
   }
 
-  // Set user token and authentication flag
+  // Set user token
   authenticate(token) {
     this.setState({
       token: token
     });
+
+    var decoded = jwtDecode(token);
+
+    fetch(`/api/users/${decoded.user_id}`)
+      .then(res => res.json())
+      .then(json => this.setState({ user: json.user }));
+
     localStorage.setItem('token', token);
   }
 
   logout() {
     this.setState({
-      token: ''
+      token: '',
+      user: null
     });
     localStorage.removeItem('token');
   }
@@ -43,10 +54,11 @@ export default class App extends React.Component {
   render() {
     return (
       <div id='app'>
-        <Header isAuthenticated={this.isAuthenticated} />
+        <Header isAuthenticated={this.isAuthenticated} user={this.state.user} />
         <main>
           {this.props.children && React.cloneElement(this.props.children, {
-            isAuthenticated: this.state.isAuthenticated,
+            isAuthenticated: this.isAuthenticated,
+            user: this.state.user,
             authenticate: this.authenticate,
             logout: this.logout,
             token: this.state.token
