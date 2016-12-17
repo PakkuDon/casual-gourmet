@@ -9,3 +9,6 @@ config/db_config.js
 
 # OSX Temp files
 .DS_Store
+
+# Generated files
+dist/bundle.js*
