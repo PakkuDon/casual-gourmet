@@ -3,6 +3,7 @@ node_modules/
 
 # Credentials
 config/db_config.js
+config/config.json
 
 # Log files
 *.log
