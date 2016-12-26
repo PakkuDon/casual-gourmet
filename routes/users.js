@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var db = require('../db');
+var db = require('../knex_db');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 

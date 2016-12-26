@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var db = require('../db');
+var db = require('../knex_db');
 
 // POST /api/auth
 // Authenticate user

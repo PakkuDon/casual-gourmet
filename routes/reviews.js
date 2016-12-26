@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var auth = require('../middleware/auth');
-var db = require('../db');
+var db = require('../knex_db');
 
 // POST /api/reviews
 // Add review for recipe
