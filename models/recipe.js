@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         model: 'Users',
         key: 'id'
       }
-    }
+    },
     image_url: DataTypes.TEXT
   }, {
     classMethods: {
