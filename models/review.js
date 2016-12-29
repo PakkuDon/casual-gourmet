@@ -22,7 +22,14 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Review.belongsTo(models.User, {
+          as: 'user',
+          foreignKey: 'user_id'
+        });
+        Review.belongsTo(models.Recipe, {
+          as: 'recipe',
+          foreignKey: 'recipe_id'
+        });
       }
     }
   });

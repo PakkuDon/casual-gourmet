@@ -17,7 +17,18 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Recipe.belongsTo(models.User, {
+          as: 'author',
+          foreignKey: 'author_id'
+        });
+        Recipe.hasMany(models.Review, {
+          as: 'reviews',
+          foreignKey: 'recipe_id'
+        });
+        Recipe.hasMany(models.Bookmark, {
+          as: 'bookmarks',
+          foreignKey: 'recipe_id'
+        });
       }
     }
   });
