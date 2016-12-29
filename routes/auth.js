@@ -1,23 +1,22 @@
 var router = require('express').Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var db = require('../knex_db');
+var { User } = require('../models');
 
 // POST /api/auth
 // Authenticate user
 router.post('/', (req, res) => {
-  db('users').where({
-    email: req.body.email
+  User.findOne({
+    where: { email: req.body.email }
   })
-  .then(results => {
-    if (results.length === 0) {
+  .then(user => {
+    if (!user) {
       res.status(404).json({
         success: false,
         message: 'Email or password invalid'
       });
     }
     else {
-      var user = results[0];
       if (bcrypt.compareSync(req.body.password, user.password)) {
         var token = jwt.sign({ user_id: user.id }, req.app.get('secret'), {
           expiresIn: '24h'
