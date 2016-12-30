@@ -10,7 +10,7 @@ export default class Recipe extends React.Component {
         </div>
         <h2>{recipe.name}</h2>
         <div>
-          Posted on {moment(recipe.date_posted).format('MMMM Do YYYY')}
+          Posted on {moment(recipe.createdAt).format('MMMM Do YYYY')}
         </div>
         <p>{recipe.description}</p>
         <h3>Instructions</h3>
