@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var { Recipe } = require('../models');
+var { User, Recipe } = require('../models');
 var auth = require('../middleware/auth');
 
 // GET /api/recipes
@@ -29,21 +29,30 @@ router.get('/', (req, res) => {
 // GET /api/recipes/:id
 // Retrieve single recipe
 router.get('/:id', (req, res) => {
-  Recipe.findById(req.params.id)
-    .then(recipe => {
-      if (!recipe) {
-        res.status(404).json({
-          success: false,
-          message: 'Recipe not found'
-        });
+  Recipe.findOne({
+    where: { id: req.params.id },
+    include: [
+      {
+        model: User,
+        as: 'author',
+        attributes: [ 'id', 'username' ]
       }
-      else {
-        res.json({
-          success: true,
-          recipe
-        });
-      }
-    });
+    ]
+  })
+  .then(recipe => {
+    if (!recipe) {
+      res.status(404).json({
+        success: false,
+        message: 'Recipe not found'
+      });
+    }
+    else {
+      res.json({
+        success: true,
+        recipe
+      });
+    }
+  });
 });
 
 // POST /api/recipes
