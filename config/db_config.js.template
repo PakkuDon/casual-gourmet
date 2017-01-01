@@ -1,6 +1,0 @@
-// Set DB credentials here
-module.exports = {
-  user: '',
-  password: '',
-  database: ''
-};

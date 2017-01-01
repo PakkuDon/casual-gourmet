@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
-var db = require('./knex_db');
 var app = express();
 
 // Routes
