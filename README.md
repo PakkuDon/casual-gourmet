@@ -21,7 +21,7 @@ Screenshot pending.
 - Node.js
 - Express.js
 - PostgreSQL
-- Knex.js
+- Sequelize
 - JSON Web Tokens
 - Webpack
 - React
@@ -32,13 +32,12 @@ Screenshot pending.
 ## Installation instructions
 ```
 npm install
-cp config/db_config.js.template config/db_config.js
-Add database credentials to config/db_config.js
-./node_modules/.bin/knex migrate:latest
-./node_modules/.bin/knex seed:run
+cp config/config.json.template config/config.json
+Add database credentials to config/config.json
+./node_modules/.bin/sequelize db:migrate
 npm run build && npm start
 OR
-npm run build
+npm run watch
 npm run dev
 ```
 
