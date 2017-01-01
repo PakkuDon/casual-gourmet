@@ -1,23 +1,28 @@
 var router = require('express').Router();
-var db = require('../knex_db');
+var { Tag } = require('../models');
 
 // GET /api/tags
 // Return filtered list of tags
 router.get('/', (req, res) => {
-  db('tags').where('name', 'like', `%${req.query.tag || ''}%`)
-    .then(tags => {
-      res.status(200).json({
-        success: true,
-        tags: tags
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({
-        success: false,
-        message: 'Failed to retrieve tags'
-      });
+  Tag.findAll({
+    where: {
+      name: { $iLike: `%${req.query.tag || ''}%` }
+    },
+    attributes: [ 'id', 'name' ]
+  })
+  .then(tags => {
+    res.status(200).json({
+      success: true,
+      tags: tags
     });
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve tags'
+    });
+  });
 });
 
 module.exports = router;
