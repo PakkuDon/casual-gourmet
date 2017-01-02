@@ -32,7 +32,7 @@ router.use('/tags', tagRoutes);
 router.use('/users', userRoutes);
 app.use('/api', router);
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 

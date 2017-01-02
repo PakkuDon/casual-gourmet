@@ -2,11 +2,11 @@ require('normalize.css/normalize.css');
 require('./stylesheets/app.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, hashHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 
 ReactDOM.render(
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     {routes}
   </Router>,
   document.querySelector('#app')
