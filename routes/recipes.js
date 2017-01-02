@@ -8,7 +8,7 @@ var auth = require('../middleware/auth');
 router.get('/', (req, res) => {
   Recipe.findAll({
     where: {
-      name: { $iLike: `%${req.query.name}%` }
+      name: { $iLike: `%${req.query.name || ''}%` }
     }
   })
   .then(recipes => {

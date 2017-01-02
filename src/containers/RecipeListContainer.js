@@ -8,10 +8,20 @@ export default class RecipeListContainer extends React.Component {
     this.state = {
       recipes: []
     };
+
+    this.getRecipes = this.getRecipes.bind(this);
   }
 
   componentDidMount() {
-    fetch(`/api/recipes/?name=${this.props.location.query.name || ''}`)
+    this.getRecipes(this.props.location.query.name);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getRecipes(nextProps.location.query.name);
+  }
+
+  getRecipes(query = '') {
+    fetch(`/api/recipes/?name=${query}`)
       .then(res => res.json())
       .then(json => this.setState({ recipes: json.recipes }));
   }
