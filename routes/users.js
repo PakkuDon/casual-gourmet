@@ -1,14 +1,26 @@
 var router = require('express').Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var { User } = require('../models');
+var { User, Recipe } = require('../models');
 
 // GET /api/users/:id
 // Return details for selected user
 router.get('/:id', (req, res) => {
   User.findOne({
     where: { id: req.params.id },
-    attributes: ['id', 'username', 'first_name', 'last_name', 'email']
+    attributes: ['id', 'username', 'first_name', 'last_name', 'email'],
+    include: [
+      {
+        model: Recipe,
+        as: 'recipes',
+        attributes: [
+          'id',
+          'name',
+          'image_url',
+          'createdAt'
+        ]
+      }
+    ]
   })
   .then(user => {
     if (!user) {
