@@ -13,11 +13,11 @@ export default class Recipe extends React.Component {
     }
     else {
       return (
-        <div className='recipe-card'>
+        <div className='card recipe-card'>
           <div className='recipe-image' style={{ backgroundImage: `url('${recipe.image_url}')` }}>
           </div>
           <h2>{recipe.name}</h2>
-          <div>
+          <div className='details'>
             Posted on {moment(recipe.createdAt).format('MMMM Do YYYY')} by <Link to={`/users/${recipe.author.id}`}>{recipe.author.username}</Link>
           </div>
           <p>{recipe.description}</p>

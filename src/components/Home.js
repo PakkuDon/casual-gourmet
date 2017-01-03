@@ -14,7 +14,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <section id='search-page'>
-        <p>Search recipes</p>
+        <h2>Search recipes</h2>
         <form onSubmit={this.onSubmit}>
           <input id='q' ref='q' type='text' />
           <button>Search</button>

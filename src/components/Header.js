@@ -5,8 +5,8 @@ export default class Header extends React.Component {
   render() {
     return (
       <header>
+        <Link to='/'><h1 className='brand'>Casual Gourmet</h1></Link>
         <nav>
-          <Link to='/'><h1 className='brand'>Casual Gourmet</h1></Link>
           <ul>
             <li>
               <Link to='/recipes'>Recipes</Link>
