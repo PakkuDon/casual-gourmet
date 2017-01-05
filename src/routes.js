@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './components/App';
+import Root from './containers/Root';
 import Home from './containers/HomeContainer';
 import AddRecipe from './containers/AddRecipeContainer';
 import Recipe from './containers/RecipeContainer';
@@ -11,7 +11,7 @@ import Logout from './containers/LogoutContainer';
 import Profile from './containers/ProfileContainer';
 
 export default (
-  <Route path='/' component={App}>
+  <Route path='/' component={Root}>
     <IndexRoute component={Home} />
     <Route path='/account/login' component={Login} />
     <Route path='/account/logout' component={Logout} />
