@@ -1,8 +1,4 @@
-export const TEST = 'TEST';
-
-export function test() {
-  return {
-    type: TEST,
-    message: 'Hello world'
-  };
-}
+import * as user from './user';
+export {
+  user
+};

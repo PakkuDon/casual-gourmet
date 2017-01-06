@@ -12,7 +12,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+  var actions = {
+    ...actionCreators.user
+  };
+  return bindActionCreators(actions, dispatch);
 }
 
 const Root = connect(mapStateToProps, mapDispatchToProps)(App);
