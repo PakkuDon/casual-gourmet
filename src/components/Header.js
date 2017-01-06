@@ -12,11 +12,13 @@ export default class Header extends React.Component {
               <Link to='/recipes'>Recipes</Link>
             </li>
           </ul>
-          {this.props.user ?
+          {this.props.user.profile ?
             (<ul>
-              <li>Welcome <Link to={`/users/${this.props.user.id}`}>{this.props.user.username}</Link></li>
+              <li>
+                <Link to={`/users/${this.props.user.profile.id}`}>{this.props.user.profile.username}</Link>
+              </li>
               <li><Link to='/recipes/new'>Add Recipe</Link></li>
-              <li><Link to='/account/logout'>Log out</Link></li>
+              <li><button onClick={this.props.logout}>Log out</button></li>
             </ul>)
           :
             (<ul>
