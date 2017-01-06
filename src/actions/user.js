@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import jwtDecode from 'jwt-decode';
+import { push } from 'react-router-redux';
 import * as UserAction from '../constants/user';
 
 // Log in
@@ -23,6 +24,7 @@ export function login(email, password) {
       var userId = jwtDecode(token).user_id;
       dispatch(loginSuccess(token));
       dispatch(getUser(userId));
+      dispatch(push('/'));
     })
     .catch(err => dispatch(loginFail(err)));
   }
@@ -50,10 +52,13 @@ function loginFail(error) {
 
 // Log out
 export function logout() {
-  localStorage.removeItem('token');
-  return {
-    type: UserAction.LOGOUT
-  };
+  return dispatch => {
+    localStorage.removeItem('token');
+    dispatch(push('/'));
+    return dispatch({
+      type: UserAction.LOGOUT
+    });
+  }
 }
 
 // Fetch user
