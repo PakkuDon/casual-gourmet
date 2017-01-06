@@ -37,8 +37,7 @@ function loginRequest() {
 function loginSuccess(token) {
   localStorage.setItem('token', token);
   return {
-    type: UserAction.LOGIN_SUCCESS,
-    token
+    type: UserAction.LOGIN_SUCCESS
   };
 }
 
