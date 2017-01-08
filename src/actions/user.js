@@ -3,6 +3,50 @@ import jwtDecode from 'jwt-decode';
 import { push } from 'react-router-redux';
 import * as UserAction from '../constants/user';
 
+// Register
+export function register(user) {
+  return dispatch => {
+    dispatch(registerRequest());
+
+    return fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(json => {
+      var token = json.token;
+      var userId = jwtDecode(token).user_id;
+      dispatch(registerSuccess(token));
+      dispatch(getUser(userId));
+      dispatch(push('/'));
+    })
+    .catch(error => dispatch(registerFail(error)));
+  }
+}
+
+function registerRequest() {
+  return {
+    type: UserAction.REGISTRATION_REQUEST
+  };
+}
+
+function registerSuccess(token) {
+  localStorage.setItem('token', token);
+  return {
+    type: UserAction.REGISTRATION_SUCCESS
+  };
+}
+
+function registerFail(error) {
+  return {
+    type: UserAction.REGISTRATION_FAIL,
+    error
+  };
+}
+
 // Log in
 export function login(email, password) {
   return dispatch => {

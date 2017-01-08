@@ -5,7 +5,7 @@ import Home from './containers/HomeContainer';
 import AddRecipe from './containers/AddRecipeContainer';
 import Recipe from './containers/RecipeContainer';
 import RecipeList from './containers/RecipeListContainer';
-import Registration from './containers/RegistrationContainer';
+import Registration from './components/Registration';
 import Login from './components/Login';
 import Profile from './containers/ProfileContainer';
 

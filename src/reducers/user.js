@@ -2,6 +2,20 @@ import * as UserAction from '../constants/user';
 
 const user = (state = {}, action) => {
   switch (action.type) {
+    case UserAction.REGISTRATION_REQUEST:
+      return Object.assign({}, state, {
+        error: '',
+        isLoading: true
+      });
+    case UserAction.REGISTRATION_SUCCESS:
+      return Object.assign({}, state, {
+        isLoading: false
+      });
+    case UserAction.REGISTRATION_FAIL:
+      return Object.assign({}, state, {
+        error: action.error,
+        isLoading: false
+      });
     case UserAction.LOGIN_REQUEST:
       return Object.assign({}, state, {
         error: '',
