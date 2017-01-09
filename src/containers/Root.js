@@ -13,7 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   var actions = {
-    ...actionCreators.user
+    ...actionCreators.user,
+    ...actionCreators.recipe
   };
   return bindActionCreators(actions, dispatch);
 }

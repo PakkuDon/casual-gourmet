@@ -70,7 +70,7 @@ router.post('/', auth.isAuthenticated, (req, res) => {
     .then(recipe => {
       res.json({
         success: true,
-        recipe_id: recipe.id
+        recipe: recipe
       });
     })
     .catch(err => {
