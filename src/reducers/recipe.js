@@ -23,7 +23,7 @@ const recipe = (state = {}, action) => {
       });
     case RecipeAction.GET_RECIPE_SUCCESS:
       return Object.assign({}, state, {
-        recipe: action.recipe,
+        details: action.recipe,
         isLoading: false
       });
     case RecipeAction.GET_RECIPE_FAIL:

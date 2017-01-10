@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import Root from './containers/Root';
 import Home from './containers/HomeContainer';
 import AddRecipe from './containers/AddRecipeContainer';
-import Recipe from './containers/RecipeContainer';
+import Recipe from './components/Recipe';
 import RecipeList from './containers/RecipeListContainer';
 import Registration from './components/Registration';
 import Login from './components/Login';
