@@ -6,7 +6,8 @@ import App from '../components/App';
 function mapStateToProps(state) {
   return {
     user: state.user,
-    recipes: state.recipes,
+    recipe: state.recipe,
+    results: state.results,
     profile: state.profile
   };
 }
