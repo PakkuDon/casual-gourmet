@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Root from './containers/Root';
 import Home from './containers/HomeContainer';
-import AddRecipe from './containers/AddRecipeContainer';
+import AddRecipe from './components/AddRecipe';
 import Recipe from './components/Recipe';
 import RecipeList from './containers/RecipeListContainer';
 import Registration from './components/Registration';
