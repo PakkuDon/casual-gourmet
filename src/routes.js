@@ -4,7 +4,7 @@ import Root from './containers/Root';
 import Home from './containers/HomeContainer';
 import AddRecipe from './components/AddRecipe';
 import Recipe from './components/Recipe';
-import RecipeList from './containers/RecipeListContainer';
+import RecipeList from './components/RecipeList';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import Profile from './containers/ProfileContainer';

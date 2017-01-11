@@ -7,7 +7,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     recipe: state.recipe,
-    results: state.results,
+    search: state.search,
     profile: state.profile
   };
 }
@@ -15,7 +15,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   var actions = {
     ...actionCreators.user,
-    ...actionCreators.recipe
+    ...actionCreators.recipe,
+    ...actionCreators.search
   };
   return bindActionCreators(actions, dispatch);
 }
