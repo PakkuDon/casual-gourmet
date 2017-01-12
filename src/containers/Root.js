@@ -16,7 +16,8 @@ function mapDispatchToProps(dispatch) {
   var actions = {
     ...actionCreators.user,
     ...actionCreators.recipe,
-    ...actionCreators.search
+    ...actionCreators.search,
+    ...actionCreators.profile
   };
   return bindActionCreators(actions, dispatch);
 }

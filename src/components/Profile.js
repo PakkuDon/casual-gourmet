@@ -3,8 +3,12 @@ import { Link } from 'react-router';
 import RecipeItem from './RecipeItem';
 
 export default class Profile extends React.Component {
+  componentDidMount() {
+    this.props.getUser(this.props.params.id);
+  }
+
   render() {
-    var user = this.props.user;
+    var user = this.props.profile.user;
     if (user) {
       return (
         <div className='card'>

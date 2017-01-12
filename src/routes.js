@@ -7,7 +7,7 @@ import Recipe from './components/Recipe';
 import RecipeList from './components/RecipeList';
 import Registration from './components/Registration';
 import Login from './components/Login';
-import Profile from './containers/ProfileContainer';
+import Profile from './components/Profile';
 
 export default (
   <Route path='/' component={Root}>

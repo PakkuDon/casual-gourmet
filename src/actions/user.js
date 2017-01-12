@@ -106,7 +106,7 @@ export function logout() {
 }
 
 // Fetch user
-export function getUser(id) {
+function getUser(id) {
   return dispatch => {
     dispatch(getUserRequest());
     return fetch(`/api/users/${id}`)
