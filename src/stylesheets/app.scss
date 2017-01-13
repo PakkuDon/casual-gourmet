@@ -140,15 +140,15 @@ button {
       color: inherit;
     }
   }
+}
 
-  .recipe-image {
-    background-position: center;
-    background-size: cover;
-    height: 20vh;
-    min-height: 200px;
-    margin: -1em;
-    margin-bottom: 1em;
-  }
+.recipe-image {
+  background-position: center;
+  background-size: cover;
+  height: 20vh;
+  min-height: 200px;
+  margin: -1em;
+  margin-bottom: 1em;
 }
 
 @keyframes fadeInFromTop {
@@ -160,5 +160,19 @@ button {
   to {
     top: 0px;
     opacity: 1;
+  }
+}
+
+@media (min-width: 960px) {
+  .recipe-item {
+    display: inline-block;
+    width: 45%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .recipe-item {
+    display: inline-block;
+    width: 30%;
   }
 }
