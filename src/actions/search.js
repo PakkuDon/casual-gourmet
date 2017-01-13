@@ -2,6 +2,13 @@ import fetch from 'isomorphic-fetch';
 import { push } from 'react-router-redux';
 import * as SearchAction from '../constants/search';
 
+// Navigate to search page
+export function showResults(query = '') {
+  return dispatch => {
+    dispatch(push(`/recipes/?name=${query}`));
+  };
+}
+
 // Search recipes
 export function searchRecipes(query = '') {
   return dispatch => {
