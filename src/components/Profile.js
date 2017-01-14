@@ -18,11 +18,15 @@ export default class Profile extends React.Component {
           </header>
           <div>
             <h3>Recipes</h3>
-            {user.recipes.map(recipe => {
-              return (
-                <RecipeItem key={recipe.id} recipe={recipe} />
-              );
-            })}
+            {user.recipes.map(recipe => (
+              <RecipeItem key={recipe.id} recipe={recipe} />
+            ))}
+          </div>
+          <div>
+            <h3>Bookmarks</h3>
+            {user.bookmarks.map(bookmark => bookmark.recipe).map(recipe => (
+              <RecipeItem key={recipe.id} recipe={recipe} />
+            ))}
           </div>
         </div>
       );

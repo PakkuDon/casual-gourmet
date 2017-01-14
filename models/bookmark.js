@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
+        Bookmark.belongsTo(models.Recipe, {
+          as: 'recipe',
+          foreignKey: 'recipe_id'
+        });
       }
     }
   });
