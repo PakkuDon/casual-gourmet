@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import RecipeReview from './RecipeReview';
 
 export default class Recipe extends React.Component {
   componentDidMount() {
@@ -37,6 +38,12 @@ export default class Recipe extends React.Component {
         <div>
           {recipe.instructions}
         </div>
+        <h3>Reviews</h3>
+        {
+          recipe.reviews.map(review => (
+            <RecipeReview key={review.id} review={review} />
+          ))
+        }
       </div>
     ) : (
       <div className='card recipe-card'></div>
