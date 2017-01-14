@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var { User, Recipe, Bookmark } = require('../models');
+var { User, Recipe, Bookmark, Review } = require('../models');
 
 // GET /api/users/:id
 // Return details for selected user
@@ -24,6 +24,17 @@ router.get('/:id', (req, res) => {
         model: Bookmark,
         as: 'bookmarks',
         attributes: ['createdAt'],
+        include: [
+          {
+            model: Recipe,
+            as: 'recipe'
+          }
+        ]
+      },
+      {
+        model: Review,
+        as: 'reviews',
+        attributes: ['content', 'score', 'createdAt'],
         include: [
           {
             model: Recipe,

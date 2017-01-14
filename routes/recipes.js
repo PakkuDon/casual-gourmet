@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var { User, Recipe } = require('../models');
+var { User, Recipe, Review } = require('../models');
 var auth = require('../middleware/auth');
 
 // GET /api/recipes
@@ -9,7 +9,13 @@ router.get('/', (req, res) => {
   Recipe.findAll({
     where: {
       name: { $iLike: `%${req.query.name || ''}%` }
-    }
+    },
+    include: [
+      {
+        model: Review,
+        as: 'reviews'
+      }
+    ]
   })
   .then(recipes => {
     res.json({
@@ -36,6 +42,17 @@ router.get('/:id', (req, res) => {
         model: User,
         as: 'author',
         attributes: [ 'id', 'username' ]
+      },
+      {
+        model: Review,
+        as: 'reviews',
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: [ 'id', 'username' ]
+          }
+        ]
       }
     ]
   })
