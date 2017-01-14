@@ -32,8 +32,8 @@ Screenshot pending.
 ## Installation instructions
 ```
 npm install
-cp config/config.json.template config/config.json
-Add database credentials to config/config.json
+cp .env.example .env
+Edit DB_HOST / DB_USER / DB_PASS values in .env
 ./node_modules/.bin/sequelize db:migrate
 npm run build && npm start
 OR

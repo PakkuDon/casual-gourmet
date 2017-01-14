@@ -1,9 +1,8 @@
 # Dependencies
 node_modules/
 
-# Credentials
-config/db_config.js
-config/config.json
+# Configuration
+.env
 
 # Log files
 *.log
