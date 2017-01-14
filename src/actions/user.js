@@ -154,3 +154,47 @@ export function loadSession() {
     };
   }
 }
+
+// Bookmark recipe
+export function bookmarkRecipe(recipeId) {
+  return dispatch => {
+    var token = localStorage.getItem('token');
+    dispatch(bookmarkRecipeRequest());
+    return fetch('/api/bookmarks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        recipe_id: recipeId,
+        token
+      })
+    })
+    .then(res => res.json())
+    .then(json => {
+      token = jwtDecode(token);
+      dispatch(getUser(token.user_id));
+      dispatch(bookmarkRecipeSuccess());
+    })
+    .catch(error => dispatch(bookmarkRecipeFail(error)));
+  }
+}
+
+function bookmarkRecipeRequest() {
+  return {
+    type: UserAction.BOOKMARK_REQUEST
+  };
+}
+
+function bookmarkRecipeSuccess() {
+  return {
+    type: UserAction.BOOKMARK_SUCCESS
+  };
+}
+
+function bookmarkRecipeFail(error) {
+  return {
+    type: UserAction.BOOKMARK_FAIL,
+    error
+  };
+}

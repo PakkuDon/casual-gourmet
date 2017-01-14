@@ -56,6 +56,23 @@ const user = (state = {}, action) => {
         error: action.error,
         isLoading: false
       };
+    case UserAction.BOOKMARK_REQUEST:
+      return {
+        ...state,
+        error: '',
+        isLoading: true
+      };
+    case UserAction.BOOKMARK_SUCCESS:
+      return {
+        ...state,
+        isLoading: false
+      };
+    case UserAction.BOOKMARK_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false
+      };
     default:
       return state;
   }
