@@ -14,8 +14,11 @@ export default class Recipe extends React.Component {
 
   render() {
     var recipe = this.props.recipe.details;
-    var isBookmarked = this.props.user.profile &&
-      this.props.user.profile.bookmarks.some(b => b.recipe.id === recipe.id);
+    var isBookmarked = false;
+    if (recipe) {
+      isBookmarked = this.props.user.profile &&
+        this.props.user.profile.bookmarks.some(b => b.recipe.id === recipe.id);
+    }
 
     return recipe ? (
       <div className='card recipe-card'>

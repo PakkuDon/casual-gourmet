@@ -34,11 +34,20 @@ router.get('/:id', (req, res) => {
       {
         model: Review,
         as: 'reviews',
-        attributes: ['content', 'score', 'createdAt'],
+        attributes: [
+          'id',
+          'content',
+          'score',
+          'createdAt'
+        ],
         include: [
           {
             model: Recipe,
             as: 'recipe'
+          },
+          {
+            model: User,
+            as: 'user'
           }
         ]
       }

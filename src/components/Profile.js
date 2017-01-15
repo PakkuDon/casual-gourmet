@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import RecipeItem from './RecipeItem';
+import UserReview from './UserReview';
 
 export default class Profile extends React.Component {
   componentDidMount() {
@@ -32,6 +33,12 @@ export default class Profile extends React.Component {
             <h3>Bookmarks</h3>
             {user.bookmarks.map(bookmark => bookmark.recipe).map(recipe => (
               <RecipeItem key={recipe.id} recipe={recipe} />
+            ))}
+          </div>
+          <div>
+            <h3>Reviews</h3>
+            {user.reviews.map(review => (
+              <UserReview key={review.id} review={review} />
             ))}
           </div>
         </div>
