@@ -7,6 +7,12 @@ export default class Profile extends React.Component {
     this.props.getUser(this.props.params.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.props.getUser(nextProps.params.id);
+    }
+  }
+
   render() {
     var user = this.props.profile.user;
     if (user) {
