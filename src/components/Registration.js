@@ -45,12 +45,6 @@ export default class Registration extends React.Component {
             ref='password'
             type='password' />
         </div>
-        <div>
-          <label htmlFor='confirm_password'>Confirm password</label>
-          <input id='confirm_password'
-            ref='confirm_password'
-            type='password' />
-        </div>
         <button>Register</button>
       </form>
     );
