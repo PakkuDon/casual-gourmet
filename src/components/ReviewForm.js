@@ -4,11 +4,11 @@ export default class ReviewFrom extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    console.log({
-      content: this.refs.content.value,
-      score: this.refs.score.value,
-      recipe_id: this.props.params.id
-    });
+    this.props.reviewRecipe(
+      this.refs.content.value,
+      this.refs.score.value,
+      this.props.params.id
+    );
   }
 
   render() {

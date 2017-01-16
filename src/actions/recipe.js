@@ -80,3 +80,48 @@ function getRecipeFail(error) {
     error
   };
 }
+
+// Review recipe
+export function reviewRecipe(content, score, recipeId) {
+  return dispatch => {
+    var token = localStorage.getItem('token');
+    dispatch(reviewRecipeRequest());
+    return fetch('/api/reviews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content,
+        score,
+        token,
+        recipe_id: recipeId
+      })
+    })
+    .then(res => res.json())
+    .then(json => {
+      dispatch(reviewRecipeSuccess());
+      dispatch(getRecipe(recipeId));
+    })
+    .catch(error => dispatch(reviewRecipeFail(error)));
+  }
+}
+
+function reviewRecipeRequest() {
+  return {
+    type: RecipeAction.ADD_REVIEW_REQUEST
+  };
+}
+
+function reviewRecipeSuccess() {
+  return {
+    type: RecipeAction.ADD_REVIEW_SUCCESS
+  };
+}
+
+function reviewRecipeFail(error) {
+  return {
+    type: RecipeAction.ADD_REVIEW_FAIL,
+    error
+  };
+}
