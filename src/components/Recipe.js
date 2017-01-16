@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
 import RecipeReview from './RecipeReview';
+import ReviewForm from './ReviewForm';
 
 export default class Recipe extends React.Component {
   componentDidMount() {
@@ -13,10 +14,11 @@ export default class Recipe extends React.Component {
   }
 
   render() {
+    var isAuthenticated = !!this.props.user.profile;
     var recipe = this.props.recipe.details;
     var isBookmarked = false;
     if (recipe) {
-      isBookmarked = this.props.user.profile &&
+      isBookmarked = isAuthenticated &&
         this.props.user.profile.bookmarks.some(b => b.recipe.id === recipe.id);
     }
 
@@ -42,6 +44,7 @@ export default class Recipe extends React.Component {
           {recipe.instructions}
         </div>
         <h3>Reviews</h3>
+        {isAuthenticated && <ReviewForm {...this.props} />}
         {
           recipe.reviews.map(review => (
             <RecipeReview key={review.id} review={review} />
