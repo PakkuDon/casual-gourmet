@@ -17,9 +17,16 @@ export default class Recipe extends React.Component {
     var isAuthenticated = !!this.props.user.profile;
     var recipe = this.props.recipe.details;
     var isBookmarked = false;
+    var averageRating;
     if (recipe) {
       isBookmarked = isAuthenticated &&
         this.props.user.profile.bookmarks.some(b => b.recipe.id === recipe.id);
+      if (recipe.reviews.length > 0) {
+        averageRating = (recipe.reviews.reduce((total, curr) => total + curr.score, 0) / recipe.reviews.length).toFixed(1);
+      }
+      else {
+        averageRating = 'No reviews yet'
+      }
     }
 
     return recipe ? (
@@ -37,6 +44,7 @@ export default class Recipe extends React.Component {
               (<button onClick={this.onBookmark.bind(this)}>Bookmark</button>)
             ) : ''
           }
+          {recipe.bookmarks ? recipe.bookmarks.length : 0} bookmarks
         </div>
         <p>{recipe.description}</p>
         <h3>Instructions</h3>
@@ -44,6 +52,7 @@ export default class Recipe extends React.Component {
           {recipe.instructions}
         </div>
         <h3>Reviews</h3>
+        <p>Average rating: {averageRating} - {recipe.reviews ? recipe.reviews.length : 0} reviews</p>
         {isAuthenticated && <ReviewForm {...this.props} />}
         {
           recipe.reviews.map(review => (

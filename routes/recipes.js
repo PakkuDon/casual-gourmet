@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var { User, Recipe, Review } = require('../models');
+var { User, Recipe, Review, Bookmark } = require('../models');
 var auth = require('../middleware/auth');
 
 // GET /api/recipes
@@ -53,6 +53,10 @@ router.get('/:id', (req, res) => {
             attributes: [ 'id', 'username' ]
           }
         ]
+      },
+      {
+        model: Bookmark,
+        as: 'bookmarks'
       }
     ]
   })
