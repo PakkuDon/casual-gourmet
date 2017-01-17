@@ -11,4 +11,4 @@ node_modules/
 .DS_Store
 
 # Generated files
-dist/bundle.js*
+# dist/bundle.js*
